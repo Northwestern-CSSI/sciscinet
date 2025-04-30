@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SciSciNet-v2: A Linked Dataset for Science of Science Research</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Monoton&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <style>
+        body {
+            background: #ECE9E6;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            font-family: "Josefin Sans", sans-serif;
+            color: #333333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .logo {
+            font-size: 5em;
+            text-align: left;
+            color: #A0522D;
+            margin-bottom: 15px;
+            font-weight: normal;
+            font-family: "Monoton", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        h1, h2, h3 {
+            font-family: "Josefin Sans", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 700;
+            font-style: normal;
+            color: #581845; /* A darker accent color, e.g., a deep purple/maroon */
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            border-bottom: 1px solid #cccccc;
+            padding-bottom: 5px;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            font-weight: 700;
+        }
+
+        p, li {
+            font-family: "Josefin Sans", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 200;
+            font-style: normal;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+        }
+
+        a {
+            color: #007bff; /* Standard link blue, or choose another accent */
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .button-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .button {
+            display: inline-block;
+            background-color: #8B4513;
+            color: #FFFFFF;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-family: 'PT Serif', serif;
+            font-weight: 700;
+            font-size: 1.1em;
+            text-decoration: none;
+            margin: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #A0522D; /* Sienna - slightly lighter brown */
+            text-decoration: none;
+            color: #FFFFFF;
+        }
+
+        .access-section {
+            background-color: #E2E2E2;  /* fallback for old browsers */
+            background-color: -webkit-linear-gradient(to right, #FFFFFF, #E2E2E2);  /* Chrome 10-25, Safari 5.1-6 */
+            background-color: linear-gradient(to right, #FFFFFF, #E2E2E2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            background: linear-gradient(to right, #FFFFFF, #E2E2E2);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+
+        .access-method {
+            margin-bottom: 20px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 0.9em;
+            color: #666666;
+        }
+
+        /* Optional: Add a subtle placeholder image area */
+        .hero-image-placeholder {
+            background-color: #ddd;
+            height: 250px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #888;
+            font-style: italic;
+            /* /* border-radius: 5px; */
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .stat-item {
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #4a6fa5;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2.5rem;
+            }
+
+            .stats {
+                flex-direction: column;
+            }
+
+            .stat-item {
+                margin-bottom: 20px;
+            }
+        }
+
+        .citation {
+            background-color: #E2E2E2;  /* fallback for old browsers */
+            background-color: -webkit-linear-gradient(to right, #FFFFFF, #E2E2E2);  /* Chrome 10-25, Safari 5.1-6 */
+            background-color: linear-gradient(to right, #FFFFFF, #E2E2E2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        code {
+            display: block;
+            background-color: #f7f7f7;
+            padding: 15px;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            margin: 15px 0;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            font-family:Arial,Helvetica,sans-serif;
+            font-size:0.95rem;
+        }
+
+        th,td{
+            font-family: "Josefin Sans", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 350;
+            font-style: normal;
+            border:1px solid #d0d0d0;
+            padding:8px 6px;
+            vertical-align:top;
+        }
+
+        th{
+            background:#f5f5f5;
+            text-align:left;
+            font-weight:600;
+        }
+
+        tbody tr:nth-child(even){
+            background:#fafafa;
+        }
+
+        caption{
+            font-family: "Josefin Sans", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 200;
+            font-style: normal;
+            caption-side:top;
+            text-align:left;
+            font-size:1.1rem;
+            font-weight:600;
+            margin:0 0 .4rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="logo">SciSciNet-v2</div>
+
+        <section id="about">
+            <h2>About the Dataset</h2>
+            <p>SciSciNet-v2 is a refreshed update to <a href="https://doi.org/10.1038/s41597-023-02198-9" target="_blank">SciSciNet</a> which is a large-scale, integrated dataset designed to support research in the science of science domain. 
+            It combines scientific publications with their network of relationships to funding sources, patents, citations, and institutional affiliations, creating a 
+            rich ecosystem for analyzing scientific productivity, impact, and innovation.</p>
+
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">~250M</div>
+                    <div class="stat-label">Research Papers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">~2.5B</div>
+                    <div class="stat-label">Citations</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100M</div>
+                    <div class="stat-label">Authors</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">45M+</div>
+                    <div class="stat-label">Patent Linkages</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="access-section" id="access">
+            <h2>Access the Data</h2>
+            <p>SciSciNet‑v2 is available through multiple platforms. Choose the one that best fits your workflow and copy the snippet to get started:</p>
+
+            <div class="access-method">
+                <h3><i class="fa-solid fa-cloud-arrow-down icon" aria-hidden="true"></i> Cloud Storage (Direct Download)</h3>
+                <p>Download the complete dataset files directly from our public Cloud Storage bucket.</p>
+                <pre><code language="shell">$ gsutil -m cp -r gs://sciscinet-neo/public/* ./sciscinet-v2/</code></pre>
+                <div class="button-container">
+                    <a href="#" class="button" target="_blank" rel="noopener">Download via Cloud Storage</a>
+                </div>
+            </div>
+
+            <div class="access-method">
+                <h3><i class="fa-solid fa-database icon" aria-hidden="true"></i> Google-BigQuery</h3>
+                <p>Query the dataset directly on BigQuery—no downloading required.</p>
+                <pre><code language="SQL">-- sample query (SQL)
+SELECT paperid, C3, C5, C10
+FROM `ksm-rch-scisciturbo.sciscinet_v2.sciscinet_papers`
+WHERE year = 2014
+LIMIT 100;</code></pre>
+                    <p>Or, you can use python to run the same query.</p>
+                    <pre><code language="python">
+from google.cloud import bigquery
+
+sql_query="""
+SELECT paperid, C3, C5, C10
+FROM `ksm-rch-scisciturbo.sciscinet_v2.sciscinet_papers`
+WHERE year = 2014
+LIMIT 100;
+"""
+client = bigquery.Client(project="ksm-rch-scisciturbo")
+results = list(client.query(sql_query).result())
+                    </code></pre>
+                    <div class="button-container">
+                        <a href="https://forms.cloud.microsoft/r/qMR5SsEedB" class="button" target="_blank" rel="noopener">Access via BigQuery</a>
+                    </div>
+                </div>
+
+                <div class="access-method">
+                    <h3><i class="fa-solid fa-robot icon" aria-hidden="true"></i> Hugging Face Datasets</h3>
+                    <p>Load SciSciNet‑v2 straight into Python using <pre><code language="shell">pip install datasets</code></pre></p>
+                    <pre><code language="python">from datasets import load_datasets
+
+ds = load_dataset("Northwestern-CSSI/sciscinet-v2", split="train")
+print(ds[0])</code></pre>
+                        <div class="button-container">
+                            <a href="https://huggingface.co/datasets/Northwestern-CSSI/sciscinet-v2" class="button" target="_blank" rel="noopener">Use with Hugging Face</a>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <table>
+                        <caption>SciSciNet Tables</caption>
+                        <h2>Getting Started & Documentation</h2>
+                        <p>
+                            To learn more about the dataset schema, data sources, construction methodology, and usage examples, please refer to our documentation and accompanying paper.
+                        </p>
+                        <img src="/Users/akhilakella/Downloads/v1_v2_fields.png" width="800" height="auto">
+                        <img src="/Users/akhilakella/Downloads/v1_v2_years.png" width="800" height="auto">
+                        <thead>
+                            <tr><th>Dataset</th><th>Version</th><th>Count / Notes</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td rowspan="2">SciSciNet‑Papers</td><td>V1</td><td>134 ,129 ,188</td></tr>
+                            <tr><td>V2</td><td>249 ,803 ,279</td></tr>
+
+                            <tr><td rowspan="2">SciSciNet‑Authors</td><td>V1</td><td>134 ,197 ,162</td></tr>
+                            <tr><td>V2</td><td>100 ,418 ,971</td></tr>
+
+                            <tr><td rowspan="2">SciSciNet‑Affiliations</td><td>V1</td><td>26 ,998</td></tr>
+                            <tr><td>V2</td><td>112 ,263</td></tr>
+
+                            <tr><td rowspan="2">SciSciNet‑Fields</td><td>V1</td><td>311</td></tr>
+                            <tr><td>V2</td><td>303</td></tr>
+
+                            <tr><td rowspan="2">SciSciNet‑Journals</td><td>V1</td><td>49 ,066</td></tr>
+                            <tr><td>V2</td><td>260 ,811</td></tr>
+
+                            <tr><td rowspan="2">Paper‑Author‑Affiliations</td><td>V1</td><td>413 ,869 ,501</td></tr>
+                            <tr><td>V2</td><td>772 ,984 ,433</td></tr>
+
+                            <tr><td rowspan="2">Paper‑References</td><td>V1</td><td>1 ,588 ,739 ,703</td></tr>
+                            <tr><td>V2</td><td>2 ,494 ,545 ,461</td></tr>
+                        </tbody>
+                    </table>
+
+                    <br>
+
+                    <table>
+                        <caption>SciSciNet → NSF Links</caption>
+                        <thead>
+                            <tr><th>Version</th><th>Details</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>V1</td>
+                                <td>
+                                    Downloaded dump: 489 ,446 NSF awards<br>
+                                    1 ,309 ,518 linkages (MAGID → NSF Award #) to 148 ,148 awards
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>V2</td>
+                                <td>
+                                    Downloaded dump: 524 ,903 NSF awards<br>
+                                    1 ,580 ,522 linkages (PaperID → NSF Award #) to 334 ,996 awards
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <br>
+
+                    <table>
+                        <caption>SciSciNet → NIH Links</caption>
+                        <thead>
+                            <tr><th>Version</th><th>Details</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>V1</td>
+                                <td>
+                                    6 ,013 ,187 linkages (MAGID → NIH Project #)<br>
+                                    379 ,014 NIH projects
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>V2</td>
+                                <td>
+                                    6 ,546 ,836 linkages (PaperID → NIH Project #)<br>
+                                    603 ,388 NIH projects
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <br>
+
+                    <table>
+                        <caption>SciSciNet → Clinical Trials Links</caption>
+                        <thead>
+                            <tr><th>Version</th><th>Details</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>V1</td>
+                                <td>
+                                    686 ,524 records linking clinical trials to papers (PMID); 480 ,893 selected (type = “background”)<br>
+                                    438 ,220 linkages (MAGID → NCT #)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>V2</td>
+                                <td>
+                                    935 ,249 records linking clinical trials to papers (PMID); 678 ,992 selected (type = “background”)<br>
+                                    612 ,587 linkages (PaperID → NCT #)
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <div class="button-container">
+                    <a href="[Link Placeholder: Your Documentation Site/Paper Link]" class="button" target="_blank" rel="noopener noreferrer">View Documentation</a>
+                    <a href="[Link Placeholder: Your GitHub Repo (if applicable)]" class="button" target="_blank" rel="noopener noreferrer">View GitHub Repo</a>
+                </div>
+
+
+                <section id="citation">
+                    <h2>How to Cite</h2>
+                    <div class="citation">
+                        <p>If you use SciSciNet-v2 in your research, please cite:</p>
+                        <code>Lin, Z., Yin, Y., Liu, L. et al. SciSciNet: A large-scale open data lake for the science of science research. Sci Data 10, 315 (2023). https://doi.org/10.1038/s41597-023-02198-9.</code>
+                    </div>
+                </section>
+
+                <div class="footer">
+                    <p>2025. Center for Science of Science and Innovation (CSSI), <br/>Kellogg School of Management, Northwestern University.</p>
+                    <!-- Optional: Add contact link -->
+                    <!-- <p><a href="mailto:[your-contact-email@example.com]">Contact Us</a></p> -->
+                </div>
+
+            </div>
+        </body>
+        </html>
