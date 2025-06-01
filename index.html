@@ -1,9 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-564NTY4L4Z"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-564NTY4L4Z');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SciSciNet: A Linked Dataset for Science of Science Research</title>
+    <meta name="description" content="SciSciNet-v2: A Linked Dataset for Science of Science Research">
+    <title>SciSciNet-v2: A Linked Dataset for Science of Science Research</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
@@ -12,7 +21,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
-    
+
     <style>
         body {
             background: #ECE9E6;  /* fallback for old browsers */
@@ -24,13 +33,13 @@
             margin: 0;
             padding: 0;
         }
-        
+
         .container {
             max-width: 900px;
             margin: 40px auto;
             padding: 20px;
         }
-        
+
         .logo {
             font-size: 5em;
             text-align: left;
@@ -41,7 +50,17 @@
             font-weight: 400;
             font-style: normal;
         }
-        
+
+        .logo-text {
+            font-size: 0.75em;
+            text-align: left;
+            color: #A0522D;
+            font-weight: normal;
+            font-family: "Monoton", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
         h1, h2, h3 {
             font-family: "Josefin Sans", sans-serif;
             font-optical-sizing: auto;
@@ -51,24 +70,24 @@
             margin-top: 30px;
             margin-bottom: 15px;
         }
-        
+
         h1 {
             font-size: 2.2em;
             text-align: center;
             margin-bottom: 25px;
         }
-        
+
         h2 {
             font-size: 1.8em;
             border-bottom: 1px solid #cccccc;
             padding-bottom: 5px;
         }
-        
+
         h3 {
             font-size: 1.4em;
             font-weight: 700;
         }
-        
+
         p, li {
             font-family: "Josefin Sans", sans-serif;
             font-optical-sizing: auto;
@@ -77,21 +96,21 @@
             font-size: 1.4em;
             margin-bottom: 15px;
         }
-        
+
         a {
             color: #007bff; /* Standard link blue, or choose another accent */
             text-decoration: none;
         }
-        
+
         a:hover {
             text-decoration: underline;
         }
-        
+
         .button-container {
             text-align: center;
             margin: 30px 0;
         }
-        
+
         .button {
             display: inline-block;
             background-color: #8B4513;
@@ -107,13 +126,13 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
-        
+
         .button:hover {
             background-color: #A0522D; /* Sienna - slightly lighter brown */
             text-decoration: none;
             color: #FFFFFF;
         }
-        
+
         .access-section {
             background-color: #E2E2E2;  /* fallback for old browsers */
             background-color: -webkit-linear-gradient(to right, #FFFFFF, #E2E2E2);  /* Chrome 10-25, Safari 5.1-6 */
@@ -123,18 +142,18 @@
             border-radius: 8px;
             margin-top: 30px;
         }
-        
+
         .access-method {
             margin-bottom: 20px;
         }
-        
+
         .footer {
             text-align: center;
             margin-top: 50px;
             font-size: 0.9em;
             color: #666666;
         }
-        
+
         /* Optional: Add a subtle placeholder image area */
         .hero-image-placeholder {
             background-color: #ddd;
@@ -148,42 +167,42 @@
             font-style: italic;
             /* /* border-radius: 5px; */
         }
-        
+
         .stats {
             display: flex;
             justify-content: space-around;
             text-align: center;
             margin: 40px 0;
         }
-        
+
         .stat-item {
             padding: 20px;
         }
-        
+
         .stat-number {
             font-size: 2.5rem;
             font-weight: 700;
             color: #4a6fa5;
         }
-        
+
         .stat-label {
             font-size: 1.1rem;
         }
-        
+
         @media (max-width: 768px) {
             .logo {
                 font-size: 2.5rem;
             }
-            
+
             .stats {
                 flex-direction: column;
             }
-            
+
             .stat-item {
                 margin-bottom: 20px;
             }
         }
-        
+
         .citation {
             background-color: #E2E2E2;  /* fallback for old browsers */
             background-color: -webkit-linear-gradient(to right, #FFFFFF, #E2E2E2);  /* Chrome 10-25, Safari 5.1-6 */
@@ -192,7 +211,7 @@
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
         }
-        
+
         code {
             display: block;
             background-color: #f7f7f7;
@@ -202,14 +221,14 @@
             font-family: monospace;
             margin: 15px 0;
         }
-        
+
         table{
             width:100%;
             border-collapse:collapse;
             font-family:Arial,Helvetica,sans-serif;
             font-size:0.95rem;
         }
-        
+
         th,td{
             font-family: "Josefin Sans", sans-serif;
             font-optical-sizing: auto;
@@ -219,17 +238,17 @@
             padding:8px 6px;
             vertical-align:top;
         }
-        
+
         th{
             background:#f5f5f5;
             text-align:left;
             font-weight:600;
         }
-        
+
         tbody tr:nth-child(even){
             background:#fafafa;
         }
-        
+
         caption{
             font-family: "Josefin Sans", sans-serif;
             font-optical-sizing: auto;
@@ -241,357 +260,246 @@
             font-weight:600;
             margin:0 0 .4rem 0;
         }
-        
-        /* Primary Tabs */
-        .tab {
-            overflow: hidden;
-            border-bottom: 1px solid #ccc;
-            background-color: #f1f1f1;
-            margin-top: 20px;
-        }
-        
-        .tab button {
-            background-color: inherit;
-            float: left;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            padding: 10px 16px;
-            transition: 0.3s;
-            font-size: 1em;
-        }
-        
-        .tab button:hover {
-            background-color: #ddd;
-        }
-        
-        .tab button.active {
-            background-color: #ccc;
-        }
-        
-        /* Tab Content */
-        .tabcontent {
-            display: none;
-            padding: 20px 0;
-            border-top: none;
-        }
-        
-        /* Secondary Tabs */
-        .subtablinks {
-            background-color: inherit;
-            float: left;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            padding: 8px 12px;
-            transition: 0.3s;
-            font-size: 0.9em;
-        }
-        
-        .subtablinks:hover {
-            background-color: #ddd;
-        }
-        
-        .subtablinks.active {
-            background-color: #ccc;
-        }
-        
-        /* Sub Tab Content */
-        .subtabcontent {
-            display: none;
-            padding: 15px 0;
-            border-top: none;
-        }
     </style>
 </head>
-
 <body>
     <div class="container">
+
         <div class="logo">SciSciNet</div>
+
         <section id="about">
             <h2>About the Dataset</h2>
-            <p><a href="https://doi.org/10.1038/s41597-023-02198-9" target="_blank">SciSciNet</a> which is a large-scale, integrated dataset designed to support research in the science of science domain. 
-                It combines scientific publications with their network of relationships to funding sources, patents, citations, and institutional affiliations, creating a rich ecosystem for analyzing 
-                scientific productivity, impact, and innovation.</p>
-                
-                <div class="stats">
-                    <div class="stat-item">
-                        <div class="stat-number">~250M</div>
-                        <div class="stat-label">Research Papers</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">~2.5B</div>
-                        <div class="stat-label">Citations</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">100M</div>
-                        <div class="stat-label">Authors</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">45M+</div>
-                        <div class="stat-label">Patent Linkages</div>
-                    </div>
-                </div>
-            </section>
-            
-            <section class="access-section" id="access">
-                <h2>Access the Data</h2>
-                <p>SciSciNet is available through multiple platforms. Choose the version and access method that best fit your workflow.</p>
-                
-                <!-- Primary Tabs for Versions -->
-                <div class="tab">
-                    <button class="tablinks" onclick="openTab(event, 'Version1')">Version 1.0</button>
-                    <button class="tablinks" onclick="openTab(event, 'Version2')" id="defaultOpen">Version 2.0</button>
-                </div>
-                
-                <!-- Version 1 Content -->
-                <div id="Version1" class="tabcontent">
-                    <h3>Version 1.0 Access Methods</h3>
-                    <!-- Secondary Tabs for Access Methods -->
-                    <div class="tab">
-                        <button class="subtablinks" onclick="openSubTab(event, 'V1Cloud')">Cloud Storage</button>
-                        <button class="subtablinks" onclick="openSubTab(event, 'V1HuggingFace')">Hugging Face Datasets</button>
-                    </div>
-                    
-                    <!-- Cloud Storage Content for Version 1 -->
-                    <div id="V1Cloud" class="subtabcontent">
-                        <h4>Cloud Storage (Direct Download)</h4>
-                        <p>Download the complete Version 1.0 dataset files directly from our public Cloud Storage bucket.</p>
-                        <pre><code>$ gsutil -m cp -r gs://sciscinet-v1/public/* ./sciscinet-v1/</code></pre>
-                    </div>
+            <p><b>SciSciNet-v2</b> is a refreshed update to <a href="https://doi.org/10.1038/s41597-023-02198-9" target="_blank">SciSciNet</a> which is a large-scale, integrated dataset designed to support research in the science of science domain. 
+            It combines scientific publications with their network of relationships to funding sources, patents, citations, and institutional affiliations, creating a 
+            rich ecosystem for analyzing scientific productivity, impact, and innovation.</p>
 
-                    <!-- Hugging Face Datasets Content for Version 1 -->
-                    <div id="V1HuggingFace" class="subtabcontent">
-                        <h4>Hugging Face Datasets</h4>
-                        <p>Load SciSciNet‑v1 straight into Python using:</p>
-                        <pre>
-<code>from datasets import load_dataset
-ds = load_dataset("Northwestern-CSSI/sciscinet-v1", split="train")
-print(ds[0])</code>
-                        </pre>
-                    </div>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">~250M</div>
+                    <div class="stat-label">Research Papers</div>
                 </div>
+                <div class="stat-item">
+                    <div class="stat-number">~2.5B</div>
+                    <div class="stat-label">Citations</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100M</div>
+                    <div class="stat-label">Authors</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">45M+</div>
+                    <div class="stat-label">Patent Linkages</div>
+                </div>
+            </div>
+        </section>
 
-                        
-                        <!-- Version 2 Content -->
-                        <div id="Version2" class="tabcontent">
-                            <h3>Version 2.0 Access Methods</h3>
-                            <!-- Secondary Tabs for Access Methods -->
-                            <div class="tab">
-                                <button class="subtablinks" onclick="openSubTab(event, 'V2Cloud')">Cloud Storage</button>
-                                <button class="subtablinks" onclick="openSubTab(event, 'V2BigQuery')">Google BigQuery</button>
-                                <button class="subtablinks" onclick="openSubTab(event, 'V2HuggingFace')">Hugging Face Datasets</button>
-                            </div>
-                            
-                            <!-- Cloud Storage Content for Version 2 -->
-                            <div id="V2Cloud" class="subtabcontent">
-                                <h4>Cloud Storage (Direct Download)</h4>
-                                <p>Download the complete Version 2.0 dataset files directly from our public Cloud Storage bucket.</p>
-                                <pre><code>$ gsutil -m cp -r gs://sciscinet-v2/public/* ./sciscinet-v2/</code></pre>
-                            </div>
-                            
-                            <!-- Google BigQuery Content for Version 2 -->
-                            <div id="V2BigQuery" class="subtabcontent">
-                                <h4>Google BigQuery</h4>
-                                <p>Query the Version 2.0 dataset directly on BigQuery—no downloading required.</p>
-                                <pre>                                    
-<code>SELECT paperid, C3, C5, C10
-FROM `project.dataset.sciscinet_v2_papers`
+        <section class="access-section" id="access">
+            <h2>Access <span class="logo-text">Sciscinet-v2</span></h2>
+            <p>SciSciNet‑v2 is available through multiple platforms. Choose the one that best fits your workflow and copy the snippet to get started:</p>
+
+            <div class="access-method">
+                <h3><i class="fa-solid fa-cloud-arrow-down icon" aria-hidden="true"></i> Cloud Storage (Direct Download)</h3>
+                <p>Download the complete dataset files directly from our public Cloud Storage bucket.</p>
+                <pre><code language="shell">$ gsutil -m cp -r gs://sciscinet-neo/v2/* ./sciscinet-v2/</code></pre>
+            </div>
+
+            <div class="access-method">
+                <h3><i class="fa-solid fa-database icon" aria-hidden="true"></i> Google-BigQuery</h3>
+                <p>Query the dataset directly on BigQuery—no downloading required. Please request for <a href="https://forms.cloud.microsoft/r/qMR5SsEedB" target="_blank">access via BigQuery</a>.</p>
+                <pre><code language="SQL">-- sample query (SQL)
+SELECT paperid, C3, C5, C10
+FROM `ksm-rch-scisciturbo.sciscinet_v2.sciscinet_papers`
 WHERE year = 2014
-LIMIT 100;</code>
-                                    </pre>
-                                </div>
-                                
-                                <!-- Hugging Face Datasets Content for Version 2 -->
-                                <div id="V2HuggingFace" class="subtabcontent">
-                                    <h4>Hugging Face Datasets</h4>
-                                    <p>Load SciSciNet‑v2 straight into Python using:</p>
-                                    <pre>
-<code>from datasets import load_dataset
-ds = load_dataset("Northwestern-CSSI/sciscinet-v2", split="train")
-print(ds[0])</code>
-                                        </pre>
-                                    </div>
-                                </div>
-                            </section>
-                            
-                            <section>
-                                <table>
-                                    <caption>SciSciNet Tables</caption>
-                                    <h2>Getting Started & Documentation</h2>
-                                    <p>
-                                        To learn more about the dataset schema, data sources, construction methodology, and usage examples, please refer to our documentation and accompanying paper.
-                                    </p>
-                                    <img src="./media/v1_v2_fields.png" width="800" height="auto">
-                                    <img src="./media/v1_v2_years.png" width="800" height="auto">
-                                    <thead>
-                                        <tr><th>Dataset</th><th>Version</th><th>Count / Notes</th></tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr><td rowspan="2">SciSciNet‑Papers</td><td>V1</td><td>134 ,129 ,188</td></tr>
-                                        <tr><td>V2</td><td>249 ,803 ,279</td></tr>
-                                        
-                                        <tr><td rowspan="2">SciSciNet‑Authors</td><td>V1</td><td>134 ,197 ,162</td></tr>
-                                        <tr><td>V2</td><td>100 ,418 ,971</td></tr>
-                                        
-                                        <tr><td rowspan="2">SciSciNet‑Affiliations</td><td>V1</td><td>26 ,998</td></tr>
-                                        <tr><td>V2</td><td>112 ,263</td></tr>
-                                        
-                                        <tr><td rowspan="2">SciSciNet‑Fields</td><td>V1</td><td>311</td></tr>
-                                        <tr><td>V2</td><td>303</td></tr>
-                                        
-                                        <tr><td rowspan="2">SciSciNet‑Journals</td><td>V1</td><td>49 ,066</td></tr>
-                                        <tr><td>V2</td><td>260 ,811</td></tr>
-                                        
-                                        <tr><td rowspan="2">Paper‑Author‑Affiliations</td><td>V1</td><td>413 ,869 ,501</td></tr>
-                                        <tr><td>V2</td><td>772 ,984 ,433</td></tr>
-                                        
-                                        <tr><td rowspan="2">Paper‑References</td><td>V1</td><td>1 ,588 ,739 ,703</td></tr>
-                                        <tr><td>V2</td><td>2 ,494 ,545 ,461</td></tr>
-                                    </tbody>
-                                </table>
-                                
-                                <br>
-                                
-                                <table>
-                                    <caption>SciSciNet → NSF Links</caption>
-                                    <thead>
-                                        <tr><th>Version</th><th>Details</th></tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>V1</td>
-                                            <td>
-                                                Downloaded dump: 489 ,446 NSF awards<br>
-                                                1 ,309 ,518 linkages (MAGID → NSF Award #) to 148 ,148 awards
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>V2</td>
-                                            <td>
-                                                Downloaded dump: 524 ,903 NSF awards<br>
-                                                1 ,580 ,522 linkages (PaperID → NSF Award #) to 334 ,996 awards
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                
-                                <br>
-                                
-                                <table>
-                                    <caption>SciSciNet → NIH Links</caption>
-                                    <thead>
-                                        <tr><th>Version</th><th>Details</th></tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>V1</td>
-                                            <td>
-                                                6 ,013 ,187 linkages (MAGID → NIH Project #)<br>
-                                                379 ,014 NIH projects
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>V2</td>
-                                            <td>
-                                                6 ,546 ,836 linkages (PaperID → NIH Project #)<br>
-                                                603 ,388 NIH projects
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                
-                                <br>
-                                
-                                <table>
-                                    <caption>SciSciNet → Clinical Trials Links</caption>
-                                    <thead>
-                                        <tr><th>Version</th><th>Details</th></tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>V1</td>
-                                            <td>
-                                                686 ,524 records linking clinical trials to papers (PMID); 480 ,893 selected (type = “background”)<br>
-                                                438 ,220 linkages (MAGID → NCT #)
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>V2</td>
-                                            <td>
-                                                935 ,249 records linking clinical trials to papers (PMID); 678 ,992 selected (type = “background”)<br>
-                                                612 ,587 linkages (PaperID → NCT #)
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </section>
-                            
-                            <div class="button-container">
-                                <a href="https://github.com/Northwestern-CSSI/sciscinet-v2/tree/main" class="button" target="_blank" rel="noopener noreferrer">View Documentation</a>
-                                <a href="https://github.com/Northwestern-CSSI/sciscinet-v2/tree/main" class="button" target="_blank" rel="noopener noreferrer">View GitHub Repo</a>
-                            </div>
-                            
-                            
-                            <section id="citation">
-                                <h2>How to Cite</h2>
-                                <div class="citation">
-                                    <p>If you use SciSciNet-v2 in your research, please cite:</p>
-                                    <code>Lin, Z., Yin, Y., Liu, L. et al. SciSciNet: A large-scale open data lake for the science of science research. Sci Data 10, 315 (2023). https://doi.org/10.1038/s41597-023-02198-9.</code>
-                                </div>
-                            </section>
-                            
-                            <div class="footer">
-                                <p>2025. Center for Science of Science and Innovation (CSSI), <br/>Kellogg School of Management, Northwestern University.</p>
-                                <!-- Optional: Add contact link -->
-                                <!-- <p><a href="mailto:[your-contact-email@example.com]">Contact Us</a></p> -->
-                            </div>
+LIMIT 100;</code></pre>
+                    <p>Or, you can use python to run the same query.</p>
+                    <pre><code language="python">
+from google.cloud import bigquery
+
+sql_query="""
+SELECT paperid, C3, C5, C10
+FROM `ksm-rch-scisciturbo.sciscinet_v2.sciscinet_papers`
+WHERE year = 2014
+LIMIT 100;
+"""
+client = bigquery.Client(project="ksm-rch-scisciturbo")
+results = list(client.query(sql_query).result())
+                    </code></pre>
+                    <div class="button-container">
+                        <a href="https://forms.cloud.microsoft/r/qMR5SsEedB" class="button" target="_blank" rel="noopener">Access via BigQuery</a>
+                    </div>
+                </div>
+
+                <div class="access-method">
+                    <h3><i class="fa-solid fa-robot icon" aria-hidden="true"></i> Hugging Face Datasets</h3>
+                    <p>Load SciSciNet‑v2 straight into Python using <pre><code language="shell">pip install -U "huggingface_hub[cli]"</code></pre></p>
+                    <pre><code language="shell">from huggingface_hub import snapshot_download
+repo_id = "Northwestern-CSSI/sciscinet-v2"
+local_dir = "/path/to/your/directory"
+snapshot_download(repo_id=repo_id, local_dir=local_dir, repo_type="dataset")
+</code></pre>
+                        <div class="button-container">
+                            <a href="https://huggingface.co/datasets/Northwestern-CSSI/sciscinet-v2" class="button" target="_blank" rel="noopener">Use with Hugging Face</a>
                         </div>
-                        
-                        <script>
-                            function openTab(evt, tabName) {
-                                var i, tabcontent, tablinks, subtabcontent, subtablinks;
-                                tabcontent = document.getElementsByClassName("tabcontent");
-                                for (i = 0; i < tabcontent.length; i++) {
-                                    tabcontent[i].style.display = "none";
-                                }
-                                tablinks = document.getElementsByClassName("tablinks");
-                                for (i = 0; i < tablinks.length; i++) {
-                                    tablinks[i].classList.remove("active");
-                                }
-                                document.getElementById(tabName).style.display = "block";
-                                evt.currentTarget.classList.add("active");
-                                
-                                // Hide all subtab contents
-                                subtabcontent = document.getElementsByClassName("subtabcontent");
-                                for (i = 0; i < subtabcontent.length; i++) {
-                                    subtabcontent[i].style.display = "none";
-                                }
-                                // Remove active class from all subtab links
-                                subtablinks = document.getElementsByClassName("subtablinks");
-                                for (i = 0; i < subtablinks.length; i++) {
-                                    subtablinks[i].classList.remove("active");
-                                }
-                            }
-                            
-                            function openSubTab(evt, subTabName) {
-                                var i, subtabcontent, subtablinks;
-                                subtabcontent = document.getElementsByClassName("subtabcontent");
-                                for (i = 0; i < subtabcontent.length; i++) {
-                                    subtabcontent[i].style.display = "none";
-                                }
-                                subtablinks = document.getElementsByClassName("subtablinks");
-                                for (i = 0; i < subtablinks.length; i++) {
-                                    subtablinks[i].classList.remove("active");
-                                }
-                                document.getElementById(subTabName).style.display = "block";
-                                evt.currentTarget.classList.add("active");
-                            }
-                            
-                            // Set default open tabs
-                            document.addEventListener("DOMContentLoaded", function() {
-                                document.getElementById("defaultOpen").click();
-                            });
-                        </script>
-                    </body>
-                    </html>
+                    </div>
+                </section>
+
+        <section class="access-section" id="access">
+            <h2>Access <span class="logo-text">Sciscinet-v1</span></h2>
+            <p>The original version SciSciNet-v1 is available through <a href="https://springernature.figshare.com/collections/SciSciNet_A_large-scale_open_data_lake_for_the_science_of_science_research/6076908/1" target="_blank">Figshare</a>. We also made it available 
+                on Cloud storage and Huggingface similar to version 2. Choose the one that best fits your workflow:
+            </p>
+
+            <div class="access-method">
+                <h3><i class="fa-solid fa-cloud-arrow-down icon" aria-hidden="true"></i> Cloud Storage (Direct Download)</h3>
+                <p>Download the complete dataset files directly from our public Cloud Storage bucket.</p>
+                <pre><code language="shell">$ gsutil -m cp -r gs://sciscinet-neo/v1/* ./sciscinet-v1/</code></pre>
+            </div>
+
+                <div class="access-method">
+                    <h3><i class="fa-solid fa-robot icon" aria-hidden="true"></i> Hugging Face Datasets</h3>
+                    <p>Load SciSciNet‑v1 straight into Python using <pre><code language="shell">pip install -U "huggingface_hub[cli]"</code></pre></p>
+                    <pre><code language="python">from huggingface_hub import snapshot_download
+
+repo_id = "Northwestern-CSSI/sciscinet-v1"
+local_dir = "/path/to/your/directory"
+snapshot_download(repo_id=repo_id, local_dir=local_dir, repo_type="dataset")
+</code></pre>
+                        <div class="button-container">
+                            <a href="https://huggingface.co/datasets/Northwestern-CSSI/sciscinet-v1" class="button" target="_blank" rel="noopener">Use with Hugging Face</a>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <table>
+                        <caption>SciSciNet Tables</caption>
+                        <h2>Getting Started & Documentation</h2>
+                        <p>
+                            To learn more about the dataset schema, data sources, construction methodology, and usage examples, please refer to our documentation and accompanying paper.
+                        </p>
+                        <img src="./media/v1_v2_fields.png" width="800" height="auto">
+                        <img src="./media/v1_v2_years.png" width="800" height="auto">
+                        <thead>
+                            <tr><th>Dataset</th><th>Version</th><th>Count / Notes</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td rowspan="2">SciSciNet‑Papers</td><td>V1</td><td>134,129,188</td></tr>
+                            <tr><td>V2</td><td>249,803,279</td></tr>
+
+                            <tr><td rowspan="2">SciSciNet‑Authors</td><td>V1</td><td>134,197,162</td></tr>
+                            <tr><td>V2</td><td>100,418,971</td></tr>
+
+                            <tr><td rowspan="2">SciSciNet‑Affiliations</td><td>V1</td><td>26,998</td></tr>
+                            <tr><td>V2</td><td>110,553</td></tr>
+
+                            <tr><td rowspan="2">SciSciNet‑Fields</td><td>V1</td><td>311</td></tr>
+                            <tr><td>V2</td><td>303</td></tr>
+
+                            <tr><td rowspan="2">SciSciNet‑Journals</td><td>V1</td><td>49,066</td></tr>
+                            <tr><td>V2</td><td>260,811</td></tr>
+
+                            <tr><td rowspan="2">Paper‑Author‑Affiliations</td><td>V1</td><td>413,869,501</td></tr>
+                            <tr><td>V2</td><td>772,984,433</td></tr>
+
+                            <tr><td rowspan="2">Paper‑References</td><td>V1</td><td>1,588,739,703</td></tr>
+                            <tr><td>V2</td><td>2,494,545,461</td></tr>
+                        </tbody>
+                    </table>
+
+                    <br>
+
+                    <table>
+                        <caption>SciSciNet → NSF Links</caption>
+                        <thead>
+                            <tr><th>Version</th><th>Details</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>V1</td>
+                                <td>
+                                    Downloaded dump: 489 ,446 NSF awards<br>
+                                    1 ,309 ,518 linkages (MAGID → NSF Award #) to 148 ,148 awards
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>V2</td>
+                                <td>
+                                    Downloaded dump: 524 ,903 NSF awards<br>
+                                    1 ,580 ,522 linkages (PaperID → NSF Award #) to 334 ,996 awards
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <br>
+
+                    <table>
+                        <caption>SciSciNet → NIH Links</caption>
+                        <thead>
+                            <tr><th>Version</th><th>Details</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>V1</td>
+                                <td>
+                                    6 ,013 ,187 linkages (MAGID → NIH Project #)<br>
+                                    379 ,014 NIH projects
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>V2</td>
+                                <td>
+                                    6 ,546 ,836 linkages (PaperID → NIH Project #)<br>
+                                    603 ,388 NIH projects
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <br>
+
+                    <table>
+                        <caption>SciSciNet → Clinical Trials Links</caption>
+                        <thead>
+                            <tr><th>Version</th><th>Details</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>V1</td>
+                                <td>
+                                    686 ,524 records linking clinical trials to papers (PMID); 480 ,893 selected (type = “background”)<br>
+                                    438 ,220 linkages (MAGID → NCT #)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>V2</td>
+                                <td>
+                                    935 ,249 records linking clinical trials to papers (PMID); 678 ,992 selected (type = “background”)<br>
+                                    612 ,587 linkages (PaperID → NCT #)
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <div class="button-container">
+                    <a href="https://github.com/Northwestern-CSSI/sciscinet-v2/tree/main" class="button" target="_blank" rel="noopener noreferrer">View Documentation</a>
+                    <a href="https://github.com/Northwestern-CSSI/sciscinet-v2/tree/main" class="button" target="_blank" rel="noopener noreferrer">View GitHub Repo</a>
+                </div>
+
+
+                <section id="citation">
+                    <h2>How to Cite</h2>
+                    <div class="citation">
+                        <p>If you use SciSciNet-v2 in your research, please cite:</p>
+                        <code>Lin, Z., Yin, Y., Liu, L. et al. SciSciNet: A large-scale open data lake for the science of science research. Sci Data 10, 315 (2023). https://doi.org/10.1038/s41597-023-02198-9.</code>
+                    </div>
+                </section>
+
+                <div class="footer">
+                    <p>2025. Center for Science of Science and Innovation (CSSI), <br/>Kellogg School of Management, Northwestern University.</p>
+                </div>
+
+            </div>
+        </body>
+        </html>
