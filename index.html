@@ -260,6 +260,32 @@
             font-weight:600;
             margin:0 0 .4rem 0;
         }
+
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .faq-list details {
+            margin-bottom: 1.5em;
+            padding: 1em;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background: #fafbfc;
+        }
+
+        .faq-images {
+            display: flex;
+            gap: 1em;
+            flex-wrap: wrap;
+            margin: 1em 0;
+        }
+
+        .faq-images img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body>
@@ -269,8 +295,8 @@
 
         <section id="about">
             <h2>About the Dataset</h2>
-            <p><b>SciSciNet-v2</b> is a refreshed update to <a href="https://doi.org/10.1038/s41597-023-02198-9" target="_blank">SciSciNet</a> which is a large-scale, integrated dataset designed to support research in the science of science domain. 
-            It combines scientific publications with their network of relationships to funding sources, patents, citations, and institutional affiliations, creating a 
+            <p><b>SciSciNet-v2</b> is a refreshed update to <a href="https://doi.org/10.1038/s41597-023-02198-9" target="_blank">SciSciNet</a> which is a large-scale, integrated dataset designed to support research in the science of science domain.
+            It combines scientific publications with their network of relationships to funding sources, patents, citations, and institutional affiliations, creating a
             rich ecosystem for analyzing scientific productivity, impact, and innovation.</p>
 
             <div class="stats">
@@ -345,7 +371,7 @@ snapshot_download(repo_id=repo_id, local_dir=local_dir, repo_type="dataset")
 
         <section class="access-section" id="access">
             <h2>Access <span class="logo-text">Sciscinet-v1</span></h2>
-            <p>The original version SciSciNet-v1 is available through <a href="https://springernature.figshare.com/collections/SciSciNet_A_large-scale_open_data_lake_for_the_science_of_science_research/6076908/1" target="_blank">Figshare</a>. We also made it available 
+            <p>The original version SciSciNet-v1 is available through <a href="https://springernature.figshare.com/collections/SciSciNet_A_large-scale_open_data_lake_for_the_science_of_science_research/6076908/1" target="_blank">Figshare</a>. We also made it available
                 on Cloud storage and Huggingface similar to version 2. Choose the one that best fits your workflow:
             </p>
 
@@ -486,6 +512,59 @@ snapshot_download(repo_id=repo_id, local_dir=local_dir, repo_type="dataset")
                     <a href="https://github.com/Northwestern-CSSI/sciscinet-v2/tree/main" class="button" target="_blank" rel="noopener noreferrer">View Documentation</a>
                     <a href="https://github.com/Northwestern-CSSI/sciscinet-v2/tree/main" class="button" target="_blank" rel="noopener noreferrer">View GitHub Repo</a>
                 </div>
+
+                <section id="faq">
+                    <h3>FAQ about <span class="logo-text">Sciscinet-v2</span></h3>
+                    <div class="faq-list">
+
+                      <details>
+                        <summary>1. How does Sciscinet-v2 compare to the previous version?</summary>
+                        <div class="faq-images">
+                          <img src="https://github.com/Northwestern-CSSI/sciscinet/blob/main/media/twt-image-4.png?raw=true" width="400" alt="Comparison 1">
+                          <img src="https://github.com/Northwestern-CSSI/sciscinet/blob/main/media/twt-image-5.png?raw=true" width="400" alt="Comparison 2">
+                        </div>
+                      </details>
+
+                      <details>
+                        <summary>2. Does Sciscinet-v2 include precomputed metrics and linkages?</summary>
+                        <div class="faq-images">
+                          <img src="https://github.com/Northwestern-CSSI/sciscinet/blob/main/media/twt-image-7.png?raw=true" width="400" alt="Metrics 1">
+                          <img src="https://github.com/Northwestern-CSSI/sciscinet/blob/main/media/twt-image-6.png?raw=true" width="400" alt="Metrics 2">
+                        </div>
+                      </details>
+
+                      <details>
+                        <summary>3. Do you have precomputed embeddings for papers?</summary>
+                        <div class="faq-images">
+                          <img src="https://github.com/Northwestern-CSSI/sciscinet/blob/main/media/twt-image-8.png?raw=true" width="400" alt="Embeddings">
+                        </div>
+                        <p>
+                          Due to the sheer size of the embeddings (1.7TB), the chunked embeddings are hosted on Google Cloud Storage. The easiest way to access them is through the following command:
+                        </p>
+                        <pre><code>$ gsutil -m cp -r gs://sciscinet-neo/v2/embeddings/* ./path/to/your/directory/</code></pre>
+                      </details>
+
+                      <details>
+                        <summary>4. I do not see <code>sciscinet_paperdetails.parquet</code> or <code>sciscinet_papertitleabstract.parquet</code> on Huggingface, where can I find them?</summary>
+                        <p>
+                          <code>sciscinet_paperdetails.parquet</code> (117 GB) and <code>sciscinet_papertitleabstract.parquet</code> (92GB) are hosted on Google Cloud Storage and Big Query exclusively due to file size. You can access them using these commands:
+                        </p>
+<pre><code>$ gsutil ls gs://sciscinet-neo/v2 | grep -e "sciscinet_paperdetails"
+gs://sciscinet-neo/v2/sciscinet_paperdetails.parquet
+
+$ gsutil ls gs://sciscinet-neo/v2 | grep -e "sciscinet_papertitleabstract"
+gs://sciscinet-neo/v2/sciscinet_papertitleabstract.parquet
+</code></pre>
+                      </details>
+
+                      <details>
+                        <summary>5. I do not see <code>sciscinet_journals</code> similar to v1, where can I find journal information?</summary>
+                        <p>
+                          Since <strong>Sciscinet-v2</strong> is built on top of <a href="https://docs.openalex.org/" target="_blank">OpenAlex</a>, journal information is stored as <a href="https://docs.openalex.org/api-entities/sources">Sources</a>. You can find the same in the file <code>sciscinet_sources.parquet</code> and paper-source mapping in <code>sciscinet_papersources.parquet</code>.
+                        </p>
+                      </details>
+                    </div>
+                  </section>
 
 
                 <section id="citation">
